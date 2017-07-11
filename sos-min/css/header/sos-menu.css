@@ -1,0 +1,30 @@
+/*！
+ * @description: imported in main.css!
+ * @last-date: 2017-7-10
+ */
+#sos-menu {
+    max-width: 100%;
+    height: auto;
+    background-color: #cba872;
+    /*padding: 10px;*/
+
+    list-style: none;
+}
+#sos-menu::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.menu-nomarl {
+    text-align: center;
+    padding: 10px;
+
+    /*position: relative;*/
+}
+.menu-nomarl:hover {
+    background-color: lightblue;
+}
+.menu-nomarl a{
+    text-decoration-line: none;
+}

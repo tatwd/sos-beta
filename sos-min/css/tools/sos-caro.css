@@ -1,0 +1,41 @@
+/**
+ * @description: imported in main.css!
+ * @last-date: 2017-7-9
+ */
+#sos-caro {
+    max-width: 100%;
+    height: auto;
+    background-color: lightgreen;
+
+    padding: 15px;
+    font-size: 0;
+
+    /*position: relative;*/
+}
+#sos-caro::after {
+    content: "";
+    clear: both;
+    display: block;
+}
+
+.caro-img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid black;
+    
+    /*position: relative;*/
+    /*position: absolute;
+    left: 0;
+    top: 0; */
+}
+.caro-img img{
+     max-width: 100%;
+     height: auto;
+
+     /*position: absolute;
+     left: 0;
+     top: 0; */
+ }
+ .caro-img-1 {
+     z-index: 999;
+ }
