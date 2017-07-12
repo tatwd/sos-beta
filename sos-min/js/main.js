@@ -3,24 +3,38 @@
  * @author: _king
  * @e-mail: leoking9641@gmail.com
  * @create-date: 2017-7-9
- * @last-date: 2017-7-10
+ * @last-date: 2017-7-12
  */
 
-'use strict'; // 严格模式
+// 严格模式
+'use strict';
 
+/**
+ * ----------------------------------------------------
+ * onload事件，调用各模块
+ * by _king
+ * ----------------------------------------------------
+ */
 window.onload = function(){
     // 双线菜单图标转动
     icoMenuRoate();
 
     // 返回顶部
-    backToTop();
+    back2Top();
 
     // $('body')[0].addEventListener('click',function(){
     //     alert('click body');
     // },false);
 };
 
-function backToTop(){
+/**
+ * ----------------------------------------------------
+ * 还回顶部 back-to-top
+ * back2Top
+ * by _king
+ * ----------------------------------------------------
+ */
+function back2Top(){
     var bkTop = $('sos-back-to-top');    
     var clk = false;
     var valId;
@@ -54,9 +68,11 @@ function backToTop(){
 }
 
 /**
- * 双线菜单图标转动
+ * ----------------------------------------------------
+ * 双线菜单 line-menu
  * icoMenuRoate,createMenuLines,setLinesStyle
  * by _king
+ * ----------------------------------------------------
  */
 function icoMenuRoate(){
     var iconMenu = $('sos-icon-menu');
@@ -72,13 +88,17 @@ function icoMenuRoate(){
         };
     }
 }
+
 function createMenuLines(obj,n){
+    var frag = document.createDocumentFragment();
     for(var i = 0;i < n;i++){
         var line = document.createElement('div');
         line.setAttribute('class','im-lines');
-        obj.appendChild(line);
+        frag.appendChild(line);
     }
+    obj.appendChild(frag);
 }
+
 function setLinesStyle(obj,isClicked){
     var degs = 'rotate(45deg)',odegs = degs.replace('45','-45'); //(degs.split(/\(/)).join('(-');
     var pads = '9px 0';

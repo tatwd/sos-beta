@@ -3,7 +3,7 @@
  * @author: _king
  * @e-mail: leoking9641@gmail.com
  * @create-date: 2017-7-8
- * @last-date: 2017-7-8
+ * @last-date: 2017-7-12
  */
 
 /*导航部分*/
@@ -13,3 +13,4 @@
 @import url(tools/sos-icon.css);
 @import url(tools/sos-caro.css);
 @import url(tools/sos-back-to-top.css);
+@import url(footer/sos-footer.css);

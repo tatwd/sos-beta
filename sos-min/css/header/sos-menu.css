@@ -1,11 +1,12 @@
 /*！
- * @description: imported in main.css!
- * @last-date: 2017-7-10
+ * Imported in main.css!
+ * last-date: 2017-7-12
  */
 #sos-menu {
     max-width: 100%;
     height: auto;
-    background-color: #cba872;
+    /* background-color: #cba872; */
+    background-color: inherit;
     /*padding: 10px;*/
 
     list-style: none;
@@ -22,9 +23,11 @@
 
     /*position: relative;*/
 }
+
 .menu-nomarl:hover {
-    background-color: lightblue;
+    background-color: #f67280;
 }
+
 .menu-nomarl a{
     text-decoration-line: none;
 }
