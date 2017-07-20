@@ -1,6 +1,6 @@
 /*！
  * Imported in main.css!
- * last-date: 2017-7-12
+ * Last-date: 2017-7-12
  */
 
 #sos-footer {
@@ -11,4 +11,6 @@
     /* display: block; */
 
     padding: 15px;
+
+    /* position: relative; */
 }

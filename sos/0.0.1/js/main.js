@@ -1,9 +1,8 @@
 /*！
- * @version: sos-min-0.0.1
- * @author: _king
- * @e-mail: leoking9641@gmail.com
- * @create-date: 2017-7-9
- * @last-date: 2017-7-12
+ * Version: sos-min-0.0.1
+ * Author: _king
+ * E-mail: leoking9641@gmail.com
+ * Date: 2017-7-9 ~ 2017-7-15
  */
 
 // 严格模式
@@ -36,7 +35,6 @@ window.onload = function(){
  */
 function back2Top(){
     var bkTop = $('sos-back-to-top');    
-    var clk = false;
     var valId;
 
     // 监听滑条移动
@@ -46,24 +44,18 @@ function back2Top(){
         }else{
             bkTop[0].style.display = 'none';
         }
-        // console.log(scrollY);
-        // if(clk){clearInterval(valId);}
     };
     
     bkTop[0].onclick = function(){
-        //  alert(window.screenTop);
-        // valId = setInterval(function(){
-        //     scrollY -= 150;
-        //     scrollTo(scrollX,scrollY);
-        //     if(scrollY == 0){
-        //         clearInterval(valId);
-        //     }
-        //     console.log('valId go');
-        // },30);
-        scrollTo(scrollX,0);
-        clk = !clk;
-        // if(scrollY == 0){clearInterval(valId2);}
-        // return false;
+        var scX = scrollX;
+        var scY = scrollY;
+        valId = setInterval(function(){ //创建定时器返回顶部
+            scY -= 150;
+            scrollTo(scX,scY);
+            if(scY <= 0){
+                clearInterval(valId);
+            }
+        },30);
     };
 }
 
@@ -89,7 +81,7 @@ function icoMenuRoate(){
     }
 }
 
-function createMenuLines(obj,n){
+function createMenuLines(obj, n){
     var frag = document.createDocumentFragment();
     for(var i = 0;i < n;i++){
         var line = document.createElement('div');
@@ -99,15 +91,18 @@ function createMenuLines(obj,n){
     obj.appendChild(frag);
 }
 
-function setLinesStyle(obj,isClicked){
+function setLinesStyle(obj, isClicked){
     var degs = 'rotate(45deg)',odegs = degs.replace('45','-45'); //(degs.split(/\(/)).join('(-');
     var pads = '9px 0';
     var bots = '-2px';
     var tras = 'all 0.3s';
+    // var disp = 'block';
+
     if(isClicked){
         pads = pads.replace('9','6');
         bots = bots.replace('-2','4');
         degs = odegs = degs.replace('45','0');
+        // disp = 'none';
     }
     obj[0].parentNode.style.padding = pads;
     // obj[0].parentNode.style = {
@@ -123,7 +118,20 @@ function setLinesStyle(obj,isClicked){
     // 过渡
     obj[0].style.transition = tras;obj[0].style.WebkitTransition = tras;
     obj[obj.length-1].style.transition = tras;obj[obj.length-1].style.WebkitTransition = tras;
+
+    // var menus = $('menu-nomarl');
+    // for(var i = 0;i < menus.length;i++ ){
+    //     menus[i].style.display = disp;
+    // }
 }
+
+// window.onresize = function() {
+//     var menus = $('menu-nomarl');
+//     for(var i = 0;i < menus.length;i++ ){
+//         menus[i].style.display = 'blocks';
+//     }
+//     console.log(1);
+// }
 
 // 获取不同类型的节点
 function $(idClassTag){
