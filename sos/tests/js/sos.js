@@ -37,16 +37,22 @@ window.onload = function() {
         $.click(tt0, function(ev){
             $.noBubble(ev);
             alert('click tt0');
-
         });
         
-        $.click(tt1, function(ev){
-            $.noBubble(ev);
-            alert('click tt1');
-        });
+        // $.click(tt1, function(ev){
+        //     $.noBubble(ev);
+        //     alert('click tt1');
+        // });
+
 
     }(sos);
-}
+
+    !function($) {
+        
+        $.animate(sos.ele('sos-icon-menu'), $.LMR);
+
+    }(sosDo);
+};
 
 /**
  * ------------------
@@ -54,7 +60,7 @@ window.onload = function() {
  * ------------------
  */
 
-const sos = (function () {
+var sos = (function () {
     
     /**
      * ------------------
@@ -68,6 +74,7 @@ const sos = (function () {
         // some functions
         ele      : getAddElement,
         css      : setStyles,
+        nos      : cancelStyles,
         htm      : addHtml,
         hasClass : hasClass,
         addClass : addClass,
@@ -110,9 +117,9 @@ const sos = (function () {
             // ele(parent_ele, new_tag, new_class, ele_total)
             var _parent_ele = idClassTags_parentEle;
 
-            let frag = document.createDocumentFragment();
-            for(let i = 0;i < ele_total;i++){
-                let new_ele = document.createElement(new_tag);
+            var frag = document.createDocumentFragment();
+            for(var i = 0;i < ele_total;i++){
+                var new_ele = document.createElement(new_tag);
                 this.addClass(new_ele, new_class);
                 frag.appendChild(new_ele);
             }
@@ -129,17 +136,26 @@ const sos = (function () {
                 this.css(ele[i], styles);
             }
         } else {
-            
+
             for (var key in styles) {
                 (key in ele.style)?
                     ele.style[key] = styles[key]:
-                    console.error(`'${key}' is not a css-attribute.`);
+                    '';// console.warn(`'${key}' is not a css-attribute in this browser!`)
 
                 // ele.style[key] = styles[key];
             }         
         }
 
     };
+
+    // cancel styles of you set
+    function cancelStyles(ele) {
+        for(var i = 0; i < arguments.length; i++) {
+            this.css(arguments[i], {
+                cssText: ''
+            });
+        }
+    }
 
     // add texts to html
     function addHtml(ele, new_txt) {
@@ -235,4 +251,85 @@ const sos = (function () {
     }
 
     return SOS;
-}());
+})();
+
+
+/**
+ * ------------------
+ * sosDo Modale
+ * ------------------
+ */
+
+ var sosDo = (function($) {
+     
+    // Object.prototype = $;
+
+    // Object Definition
+    var sosDo = {
+        LMR    : 'line-menu-rotate',
+        
+        animate: createAnimation
+        
+    };
+
+    // Animation Types
+    var ANIMATION_TYPES = {
+        LINE_MENU_ROTATE: 'line-menu-rotate'
+    };
+
+    // create a animation
+    function createAnimation(ele, animate_type) {
+        switch(animate_type) {
+            case this.LMR:
+                lineMenuRotate(ele);
+                break;
+            default: break;
+        }
+    }
+
+    // make line-menu rotate 
+    function lineMenuRotate(ele) {
+        // var ele  = $.ele('sos-icon-menu');            // get span#sos-icon-menu
+        var lines = $.ele(ele[0], 'div', 'im-lines', 2); // add div.im-lines and return them
+
+        // add event listener and rotate it
+        var _clicked = false;
+
+        $.click(ele[0], function(ev){
+            $.noBubble(ev);
+
+            if(_clicked){
+                $.nos(lines, lines[0].parentNode); // cancle styles of you set
+            } else {
+            
+                $.css(lines[0].parentNode, {
+                    padding: '9px 0'
+                });
+
+                // lines-bottom rotate 45deg
+                $.css(lines[0], {
+                    marginBottom    : '-2px',
+
+                    transform       : 'rotate(45deg)',
+                    WebkitTransform : 'rotate(45deg)',
+                    msTransform     : 'rotate(45deg)'
+                });
+
+                // lines-bottom rotate -45deg
+                $.css(lines[lines.length-1], {
+                    transform       : 'rotate(-45deg)',
+                    WebkitTransform : 'rotate(-45deg)',
+                    msTransform     : 'rotate(-45deg)'
+                });
+            }  
+            $.css(lines, {
+                tansition       : 'all 0.3s',
+                WebkitTransition: 'all 0.3s'
+            });
+            
+            _clicked = !_clicked;
+        });
+    }
+
+     return sosDo;
+ })(sos);
