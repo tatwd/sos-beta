@@ -148,7 +148,7 @@ var sos = (function () {
 
     };
 
-    // cancel styles of you set
+    // canc ael styles of you set
     function cancelStyles(ele) {
         for(var i = 0; i < arguments.length; i++) {
             this.css(arguments[i], {
