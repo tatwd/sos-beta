@@ -7,7 +7,11 @@
 window.onload = function () {
     +function ($) {
         var tt1 = $.ele('tt-1');
-        console.log(tt1.length);
+        // console.log(tt1.length);
+
+        // if(document.getElementsByClassName){
+        //     alert( navigator.userAgent + '===' + navigator.appName + '===' + navigator.appVersion);
+        // }
 
         $.toHtml(tt1[0], '_king is author');
     }(Base);
@@ -28,12 +32,9 @@ var Base = (function () {
 
     // Make IE support 'getElementsByClassName',but only support IE8 standards mode ^-^
     function ieSupportGetClass (classNameStr) {
-        // check the browser is IE or not
-        var isIE = parseInt(RegExp.$1 ? RegExp.$1 : 0);
-        
-        return  (isIE > 0 && isIE < 9) ?   
-                document.querySelectorAll(classNameStr):
-                document.getElementsByClassName(classNameStr);
+        return  document.getElementsByClassName ?  
+                document.getElementsByClassName(classNameStr):
+                document.querySelectorAll(classNameStr);
     };
     
 
@@ -57,13 +58,19 @@ var Base = (function () {
                 return  _id ? _id:
                         _class.length ? _class : _tag;
             } else {
-                // todo
+                // TODO: add new tag to html and set it class name
             }
         },
 
         // Add content to HTML
         toHtml: function (element, contents, typeNumber) {
             typeNumber = typeNumber || 0; // set default value of typeNumber
+
+            if( !this.isOdd(element) ) {
+                for( var i = 0; i < element.length; i++) {
+                    this.toHtml(element[i], contents, typeNumber);
+                }
+            }
 
             switch(typeNumber) {
                 case 0:
@@ -78,6 +85,19 @@ var Base = (function () {
                 default:
                     console.error('Error in toHtml(): no this typeNumber!');
                     break;
+            }
+        },
+
+
+        // Check it is a element or a group elements
+        isOdd: function (element) {
+            return (element && element[0])? false: true;
+        },
+
+        // set to all elements which hava same class-name or tag-name
+        toAll: function (elements, fn) {
+            for(var i = 0; i < elements.length; i++) {
+                // fn(elements[i], )  TODO
             }
         },
 

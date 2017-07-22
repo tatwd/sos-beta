@@ -77,7 +77,7 @@ var sub = Sub();
 sub.add('sub');
 // sub._name = 'sub';
 
-alert(Sub);
+// alert(Sub);
 
 var Util = (function(){
 
@@ -135,4 +135,33 @@ var Util = (function(){
 // console.log(mdl);
 // console.log(oth);
 // console.log(Util);
+
+
+var ttobj = {
+    fn1: function fn1 (e, args, fn) {
+        e--;
+        //console.log(fn.name);
+        // this.prototype.fn;
+        // if( fn in this.prototype)
+        fn(e, args);
+        // fn2(123, 34)
+    },
+    fn2: function fn2(e, s) {
+        // console.log(this);
+        // var that = this;
+        var args = arguments[1];
+        if( e > 0){
+            // console.log(this);
+            // e--;
+            this.fn1(e, args, this.fn2);
+        }else{
+            console.log(e, s);  
+        }
+        
+    }
+}
+
+ttobj.fn2(1, 2);
+
+// console.log(ttobj)
 

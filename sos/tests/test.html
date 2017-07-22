@@ -16,44 +16,7 @@
         </div>
     </body>
 </html>
-<!-- <script>
 
-//   alert(document.getElementsByTagName('p'));
+<script src="js/test.js"></script>
 
-// function getCls(cls) {
-    /* 为IE6 IE7 IE8增加document.getElementsByClassName函数 */
-    /MSIE\s*(\d+)/i.test(navigator.userAgent);
-    
-    var isIE=parseInt(RegExp.$1?RegExp.$1:0);
-    
-    if(isIE>0 && isIE <9){
-        document.getElementsByClassName = function(cls){
-            var els = this.getElementsByTagName('*');
-            var ell = els.length;
-            var elements = [];
-
-            for(var n = 0; n < ell; n++){
-                
-                var oCls = els[n].className ||'';
-
-                if(oCls.indexOf(cls) < 0 ) continue;
-                
-                oCls = oCls.split(/\s+/);
-                
-                var oCll = oCls.length;
-                for(var j = 0; j < oCll; j++){
-                        if(cls == oCls[j]){
-                            elements.push(els[n]);
-                            break;
-                        }
-                }
-            }
-            return elements;
-        }
-    }
-// }
-
-// alert(document.getElementsByClassName('tt-1')[0]);
-
-</script> -->
-<script src="js/sos-0.0.1-apha.2.js"></script>  
+<!-- <script src="js/sos-0.0.1-apha.2.js"></script>   -->
