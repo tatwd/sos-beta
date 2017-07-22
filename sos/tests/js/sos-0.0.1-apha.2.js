@@ -6,8 +6,10 @@
 
 window.onload = function () {
     +function ($) {
-        var tt0 = $.ele('tt-1');
-        alert(tt0);
+        var tt1 = $.ele('tt-1');
+        console.log(tt1.length);
+
+        $.toHtml(tt1[0], '_king is author');
     }(Base);
 };
 
@@ -22,12 +24,18 @@ var Base = (function () {
 
 
     // var ARGS_TYPE = {
-
     // }
 
+    // Make IE support 'getElementsByClassName',but only support IE8 standards mode ^-^
     function ieSupportGetClass (classNameStr) {
-
-    }
+        // check the browser is IE or not
+        var isIE = parseInt(RegExp.$1 ? RegExp.$1 : 0);
+        
+        return  (isIE > 0 && isIE < 9) ?   
+                document.querySelectorAll(classNameStr):
+                document.getElementsByClassName(classNameStr);
+    };
+    
 
     /**
      * -----------------
@@ -42,9 +50,7 @@ var Base = (function () {
             if( arguments.length == 1) {
                 var _id    = document.getElementById(idClassTag_parentElement);
                 
-                var _class = (parseInt(RegExp.$1 ? RegExp.$1 : 0) < 9) ?   
-                    document.querySelectorAll(idClassTag_parentElement):   // only support IE8 standards mode ^-^
-                    document.getElementsByClassName(idClassTag_parentElement);
+                var _class = ieSupportGetClass(idClassTag_parentElement);
                 
                 var _tag   = document.getElementsByTagName(idClassTag_parentElement);
 
