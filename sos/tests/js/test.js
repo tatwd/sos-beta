@@ -172,4 +172,12 @@ function isBig(e) {
 
 // console.log(ttobj)
 
-[1,2,3].forEach? alert('ok'): alert('on');
+// [1,2,3].forEach? alert('ok'): alert('on');
+
+var tt0 = document.getElementById('tt-0')
+// tt0.style.fontFamily = '-apple-system, BlinkMacSystemFont, \"Segoe UI\", Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"';
+// tt0.style.fontFamily = '\"SFMono-Regular\", Consolas, \"Liberation Mono\", Menlo, Courier, monospace'
+// tt0.style.backgroundColor = '#eee';
+tt0.style.cssText = 'background-color:#eee;margin:0;';
+alert(tt0.style.cssText);
+

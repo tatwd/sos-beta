@@ -8,9 +8,9 @@
 window.onload = function () {
 
     +function ($) {
-        var tt0 = $.ele('tt-1');
+        var tt0 = $.ele('tt-0');
         
-        $.pip(tt0).addClass(tt0[0], 'tt-3');
+        // $.pip(tt0).addClass(tt0[0], 'tt-3');
         // $.addClass(tt0, 'tt-2')
         // alert($.hasClass(tt0))
         
@@ -20,8 +20,20 @@ window.onload = function () {
         // alert( navigator.userAgent + '===' + navigator.appName + '===' + navigator.appVersion);
         // }
 
-        $.toHtml($.ele('tt-3'), '_king is author');
-        
+        // $.toHtml($.ele('tt-3'), '_king is author');
+
+        $.css(tt0, {
+            'background-color': '#eee',
+            'font-family'     : '\"SFMono-Regular\", Consolas, \"Liberation Mono\", Menlo, Courier, monospace'
+        });
+
+        // alert(tt0.style.cssText+'=');
+
+        setTimeout(function(){
+            // $.clear(tt0, 'css');
+            alert(tt0.style.cssText);
+        }, 3000); // 3s
+
     }(Base);
 };
 
@@ -106,10 +118,6 @@ var Base = (function () {
 
         // One param to get element(s),more params to create new tags
         ele: function (idClassTag_parentElement, newTagType, newClass, tagTotal) {
-
-            // var _this = this;
-            // if(!(this instanceof Base)) this = ;
-
             if( arguments.length == 1) {
                 var _id    = document.getElementById(idClassTag_parentElement);
                 
@@ -125,7 +133,26 @@ var Base = (function () {
         },
 
         // Set CSS
-        css: function () {},
+        css: function (element, cssTexts) {
+            // TODO: set to all...
+            for (var key in cssTexts) {
+                // Must add ';' to support IE becasue IE will clear ';' at last of the cssText, others not!
+                element.style.cssText += ';' + (key + ':' + cssTexts[key]);
+            }
+            
+        },
+
+        // Clear CSS
+
+        clear: function(ele, attr) {
+            switch (attr) {
+                case 'css':
+                    ele.style.cssText = '';
+                    break;
+                default:
+                    break;
+            }
+        },
 
         _element: null,
 
