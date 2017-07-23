@@ -6,14 +6,17 @@
 
 window.onload = function () {
     +function ($) {
-        var tt1 = $.ele('tt-1');
-        // console.log(tt1.length);
+        var tt0 = $.ele('tt-0');
+        
+        // alert(tt0)
+        console.log($.pip('tt-1'));
+        alert($.pip('tt-1'))
 
         // if(document.getElementsByClassName){
         //     alert( navigator.userAgent + '===' + navigator.appName + '===' + navigator.appVersion);
         // }
 
-        $.toHtml(tt1[0], '_king is author');
+        // $.toHtml(tt1, '_king is author');
     }(Base);
 };
 
@@ -30,12 +33,17 @@ var Base = (function () {
     // var ARGS_TYPE = {
     // }
 
-    // Make IE support 'getElementsByClassName',but only support IE8 standards mode ^-^
+    // Make IE support 'getElementsByClassName',but only support IE8+ ^-^
     function ieSupportGetClass (classNameStr) {
         return  document.getElementsByClassName ?  
                 document.getElementsByClassName(classNameStr):
-                document.querySelectorAll(classNameStr);
+                document.querySelectorAll('.' + classNameStr);  // input css-selector
     };
+
+    // Check it is a element or a group elements
+    function isOddElement (element) {
+        return (element && element[0])? false: true;
+    }
     
 
     /**
@@ -62,45 +70,57 @@ var Base = (function () {
             }
         },
 
+        // Set CSS
+        css: function () {},
+
+        _element: null,
+        
+        pip: function (eles) {
+            this._element = (typeof eles === 'object')? eles: this.ele(eles);
+            return this;
+        },
+
         // Add content to HTML
         toHtml: function (element, contents, typeNumber) {
             typeNumber = typeNumber || 0; // set default value of typeNumber
 
-            if( !this.isOdd(element) ) {
-                for( var i = 0; i < element.length; i++) {
-                    this.toHtml(element[i], contents, typeNumber);
-                }
-            }
+            if( !isOddElement(element) ) { // here cannot use 'this.isOdd()' to judge element
 
-            switch(typeNumber) {
-                case 0:
-                    element.innerHTML = contents; // change 
-                    break;
-                case 1:
-                    element.innerHTML = element.innerHTML + contents; // after
-                    break;
-                case -1:
-                    element.innerHTML = contents + element.innerHTML; // before
-                    break;
-                default:
-                    console.error('Error in toHtml(): no this typeNumber!');
-                    break;
+                // Recurse to all elements with same class-name or tag-name
+                this.toAll(arguments, this.toHtml);
+
+            } else {
+                switch(typeNumber) {
+                    case 0:
+                        element.innerHTML = contents; // change original contents
+                        break;
+                    case 1:
+                        element.innerHTML = element.innerHTML + contents; // after
+                        break;
+                    case -1:
+                        element.innerHTML = contents + element.innerHTML; // before
+                        break;
+                    default:
+                        console.error('Error in toHtml(): no this typeNumber!');
+                        break;
+                }
             }
         },
 
 
         // Check it is a element or a group elements
-        isOdd: function (element) {
-            return (element && element[0])? false: true;
-        },
+        isOdd: isOddElement,
 
-        // set to all elements which hava same class-name or tag-name
-        toAll: function (elements, fn) {
-            for(var i = 0; i < elements.length; i++) {
-                // fn(elements[i], )  TODO
+        // Set to all elements which hava same class-name or tag-name
+        toAll: function (args, fn) {
+            
+            // args[0]is elements-object,others are params of fn 
+            for(var i = 0; i < args[0].length; i++) {
+                fn(args[0][i], args[1], args[2], args[3])  // args.length <= 4
             }
-        },
+        }
 
+        // ! Last one does not add ',' after '}',or IE 7 will appear a error:'IE: Error: 缺少标识符、字符串或数字'.
     };
 
     return Base;

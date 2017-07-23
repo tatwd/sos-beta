@@ -17,11 +17,11 @@ var Person = (function(){
         }
 
         Person.prototype.display_info = function() {
-            console.log(this._element);
+            // console.log(this._element);
         }
 
         Person.prototype.dosth = function() {
-            console.log('I am working....');
+            // console.log('I am working....');
         }
 
         return Person;
@@ -40,7 +40,7 @@ var person = new Person('sos')
 person.display_info();
 person.dosth();
 
-console.log(person);
+// console.log(person);
 // console.log(Person);
 
 
@@ -142,26 +142,34 @@ var ttobj = {
         e--;
         //console.log(fn.name);
         // this.prototype.fn;
+        console.log(this);
         // if( fn in this.prototype)
-        fn(e, args);
+        fn(e, args[2]);
         // fn2(123, 34)
     },
     fn2: function fn2(e, s) {
         // console.log(this);
         // var that = this;
+        // console.log(arguments);
         var args = arguments[1];
-        if( e > 0){
+        if( isBig(e) ){
             // console.log(this);
             // e--;
-            this.fn1(e, args, this.fn2);
+            this.fn1(e, arguments, this.fn2);
         }else{
             console.log(e, s);  
         }
         
-    }
+    },
+    isBig: isBig
 }
 
-ttobj.fn2(1, 2);
+function isBig(e) {
+    return e > 0 ? true:false;
+}
+
+// ttobj.fn2(1, 2);
 
 // console.log(ttobj)
 
+// getAttribute('tt-1')? alert('ok'): alert('on');
