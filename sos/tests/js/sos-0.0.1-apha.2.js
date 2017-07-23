@@ -3,20 +3,25 @@
  * @author _king
  */
 
+'use strict';
 
 window.onload = function () {
+
     +function ($) {
-        var tt0 = $.ele('tt-0');
+        var tt0 = $.ele('tt-1');
         
-        // alert(tt0)
-        console.log($.pip('tt-1'));
-        alert($.pip('tt-1'))
+        $.pip(tt0).addClass(tt0[0], 'tt-3');
+        // $.addClass(tt0, 'tt-2')
+        // alert($.hasClass(tt0))
+        
+        // alert(tt0);
 
         // if(document.getElementsByClassName){
-        //     alert( navigator.userAgent + '===' + navigator.appName + '===' + navigator.appVersion);
+        // alert( navigator.userAgent + '===' + navigator.appName + '===' + navigator.appVersion);
         // }
 
-        // $.toHtml(tt1, '_king is author');
+        $.toHtml($.ele('tt-3'), '_king is author');
+        
     }(Base);
 };
 
@@ -30,15 +35,61 @@ window.onload = function () {
 var Base = (function () {
 
 
-    // var ARGS_TYPE = {
-    // }
-
-    // Make IE support 'getElementsByClassName',but only support IE8+ ^-^
-    function ieSupportGetClass (classNameStr) {
-        return  document.getElementsByClassName ?  
-                document.getElementsByClassName(classNameStr):
-                document.querySelectorAll('.' + classNameStr);  // input css-selector
+    var Browser = {
+        IE: 'ie', // Internet Explorer
+        FF: 'ff', // Firefox
+        CR: 'cr', // Google Chrome
+        SF: 'sf'  // Safari
     };
+
+    
+    // Compatible Class
+
+    var Compatible = function (){
+        
+        function Compatible(bv) {
+            if( !(this instanceof Compatible) ) {
+                return new Compatible(bv);  // run here when you forget 'new'
+            }
+            this.bv = bv; // browser-version
+        };
+
+        // Check compatible-function is for IE
+        Compatible.prototype.forIE = function () {
+            return this.bv === Browser.IE? true: false;
+        };
+
+        // Make IE support 'getElementsByClassName',but only support IE8+ ^-^        
+        Compatible.prototype.getClass = function (classNameStr) {
+            if(!this.forIE())
+                return;
+
+            return  document.getElementsByClassName ?  
+                    document.getElementsByClassName(classNameStr):
+                    document.querySelectorAll('.' + classNameStr);  // input css-selector
+        };
+
+        // Make IE support 'indexOf'
+        Compatible.prototype.indexOf = function (arr, any) {
+            if(!this.forIE())
+                return;
+
+            if(arr.indexOf) {
+                return arr.indexOf(any);
+            } else {
+                for (var i = 0; i < arr.length; i++){
+                    if (arr[i] === any) {
+                        return i;
+                    }
+                }
+                return -1;
+            }
+        };
+
+        return Compatible;
+    }();
+
+
 
     // Check it is a element or a group elements
     function isOddElement (element) {
@@ -56,10 +107,13 @@ var Base = (function () {
         // One param to get element(s),more params to create new tags
         ele: function (idClassTag_parentElement, newTagType, newClass, tagTotal) {
 
+            // var _this = this;
+            // if(!(this instanceof Base)) this = ;
+
             if( arguments.length == 1) {
                 var _id    = document.getElementById(idClassTag_parentElement);
                 
-                var _class = ieSupportGetClass(idClassTag_parentElement);
+                var _class = Compatible('ie').getClass(idClassTag_parentElement);
                 
                 var _tag   = document.getElementsByTagName(idClassTag_parentElement);
 
@@ -74,14 +128,16 @@ var Base = (function () {
         css: function () {},
 
         _element: null,
-        
-        pip: function (eles) {
-            this._element = (typeof eles === 'object')? eles: this.ele(eles);
+
+        pip: function (ele_fn) {
+            this._element = (typeof ele_fn === 'object')? ele_fn:
+                            (typeof ele_fn === 'string')? this.ele(ele_fn): null;
             return this;
         },
 
         // Add content to HTML
         toHtml: function (element, contents, typeNumber) {
+            element    = element || this._element; 
             typeNumber = typeNumber || 0; // set default value of typeNumber
 
             if( !isOddElement(element) ) { // here cannot use 'this.isOdd()' to judge element
@@ -107,16 +163,43 @@ var Base = (function () {
             }
         },
 
-
         // Check it is a element or a group elements
         isOdd: isOddElement,
 
         // Set to all elements which hava same class-name or tag-name
         toAll: function (args, fn) {
             
-            // args[0]is elements-object,others are params of fn 
+            // args[0] is elements-object,others are params of fn 
             for(var i = 0; i < args[0].length; i++) {
                 fn(args[0][i], args[1], args[2], args[3])  // args.length <= 4
+            }
+        },
+
+        // Check element has the class-name or not
+        hasClass: function (element, classNameStr) {
+            
+            if (element.className.length === 0) { // check element has class attribute or not
+                return false;
+            } else if (classNameStr) {
+                var arr = element.className.split(/\s+/); // split className to a array
+                
+                return Compatible('ie').indexOf(arr, classNameStr) === -1 ? false : true;
+            } else {
+                return true;
+            }
+        },
+
+        // Add a class-name to a element
+        addClass: function (element, classNameStr) {
+            
+            if (!isOddElement(element)) {
+                this.toAll(arguments, this.addClass);
+            } else {
+                // use 'Base' instand of 'this'
+                !Base.hasClass(element)? 
+                    element.className = classNameStr:
+                    !Base.hasClass(element, classNameStr)? 
+                        element.className += ' ' + classNameStr: null;
             }
         }
 

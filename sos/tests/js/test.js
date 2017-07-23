@@ -172,4 +172,4 @@ function isBig(e) {
 
 // console.log(ttobj)
 
-// getAttribute('tt-1')? alert('ok'): alert('on');
+[1,2,3].forEach? alert('ok'): alert('on');
