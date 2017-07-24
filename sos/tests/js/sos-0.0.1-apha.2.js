@@ -22,16 +22,25 @@ window.onload = function () {
 
         // $.toHtml($.ele('tt-3'), '_king is author');
 
+
+        $.pip('h1').css($._element[0], {
+            'font-family': '-apple-system, BlinkMacSystemFont, \"Segoe UI\", Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"'
+        });
+
         $.css(tt0, {
             'background-color': '#eee',
-            'font-family'     : '\"SFMono-Regular\", Consolas, \"Liberation Mono\", Menlo, Courier, monospace'
+            'font-family'     : '\"SFMono-Regular\", Consolas, \"Liberation Mono\", Menlo, Courier, monospace, \"Microsoft YaHei\"'
         });
 
         // alert(tt0.style.cssText+'=');
 
+        $.css($.ele('tt-1'), {
+            'color': 'green'
+        });
+
         setTimeout(function(){
             // $.clear(tt0, 'css');
-            alert(tt0.style.cssText);
+            // alert(tt0.style.cssText);
         }, 3000); // 3s
 
     }(Base);
@@ -134,16 +143,16 @@ var Base = (function () {
 
         // Set CSS
         css: function (element, cssTexts) {
-            // TODO: set to all...
+            if (!isOddElement(element)) {
+                this.toAll(arguments, this.css);
+            }
             for (var key in cssTexts) {
                 // Must add ';' to support IE becasue IE will clear ';' at last of the cssText, others not!
                 element.style.cssText += ';' + (key + ':' + cssTexts[key]);
             }
-            
         },
 
         // Clear CSS
-
         clear: function(ele, attr) {
             switch (attr) {
                 case 'css':
