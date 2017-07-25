@@ -7,6 +7,7 @@
 
 window.onload = function () {
 
+    // This '$' is not a jQuery object!!!
     +function ($) {
         var tt0 = $.ele('tt-0');
         
