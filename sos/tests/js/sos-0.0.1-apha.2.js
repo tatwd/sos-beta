@@ -166,6 +166,7 @@ var Base = (function () {
 
         _element: null,
 
+        // This is a test function
         pip: function (ele_fn) {
             this._element = (typeof ele_fn === 'object')? ele_fn:
                             (typeof ele_fn === 'string')? this.ele(ele_fn): null;

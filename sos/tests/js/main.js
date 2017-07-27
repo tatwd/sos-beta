@@ -2,7 +2,7 @@
  * Version: sos-min-0.0.1
  * Author: _king
  * E-mail: leoking9641@gmail.com
- * Date: 2017-7-9 ~ 2017-7-15
+ * Date: 2017-7-9 ~ 2017-7-26
  */
 
 // 严格模式
@@ -21,10 +21,58 @@ window.onload = function(){
     // 返回顶部
     back2Top();
 
+    // 图片轮播
+    caroStart();
+
     // $('body')[0].addEventListener('click',function(){
     //     alert('click body');
     // },false);
 };
+
+
+/**
+ * ----------------------------------------------------
+ * 图片录播 caro-img
+ * caroStart
+ * by _king
+ * ----------------------------------------------------
+ */
+function caroStart() {
+    var caro   = document.getElementById('sos-caro');    
+    var imgs   = document.getElementsByTagName('img');
+    // var page   = document.getElementsByTagName('span');
+    var curent = 0;
+
+    // 淡入 
+    function fadeIn () {
+        imgs[curent].className = 'active';
+        // page[curent].className = 'active';
+    }
+    // 淡出
+    function fadeOut() {
+        imgs[curent].className = ' ';
+        // page[curent].className = ' ';
+    }
+
+    function go() {
+        fadeOut();
+        curent++;
+        if(curent >= imgs.length) curent = 0;
+        fadeIn();
+    }
+
+    var inter = setInterval(go, 4000);
+
+    // 鼠标移入
+    caro.onmouseover = function () {
+        clearInterval(inter);
+    }
+    // 鼠标移出
+    caro.onmouseout = function () {
+        inter = setInterval(go, 2000);
+    }
+}
+
 
 /**
  * ----------------------------------------------------
