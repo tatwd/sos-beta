@@ -1,13 +1,13 @@
 /**
  * Imported in main.css!
- * Last-date: 2017-7-12
+ * Last-date: 2017-7-28
  */
 #sos-caro {
     width: 900px;  
     max-width: 100%;
     height: auto;
 
-    padding: 15px;  
+    padding: 15px;   
     margin: 0 auto; /* centered */
     background-color: #c06c84; 
 
@@ -78,4 +78,28 @@
 
 img.active {
     opacity: 1;
+}
+
+/* 轮播控制 */
+.caro-ctrl {
+    width: 30px;  
+    height: 30px;  
+    background-color: rgba(0, 0, 0, 0.7); 
+    display: none;   
+    text-decoration: none;
+    padding: 10px;       
+}
+
+.ctrl-left {
+    border-radius: 0 6px 6px 0;
+    position: absolute;
+    top: 45%;
+    left: 0;
+}
+
+.ctrl-right {
+    border-radius: 6px 0 0 6px;
+    position: absolute;
+    top: 45%;
+    right: 0;
 }
