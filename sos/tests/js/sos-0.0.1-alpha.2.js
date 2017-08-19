@@ -1,5 +1,5 @@
 /**
- * SOS (v0.0.1-apha.2)
+ * SOS (v0.0.1-alpha.2)
  * @author _king
  */
 
