@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- <link href="css/style.css" rel="stylesheet"> -->
+        <style>
+            .wrap {
+                position: relative;
+                 margin: 5% 10%; 
+                /* max-width: 100%; */
+                /* height: auto; */
+                border: 1px solid red;
+            }
+            .wrap::before {
+                content: '';
+                display: block;
+                width: 100%;
+                padding-top: 65%;
+
+            }
+            .img_box {
+                position: absolute;
+                left: 0;
+                top: 0;
+                height: 100%;
+                width: 100%;
+                background-color: #eee;
+            }
+            .img_box img {
+                max-width: 100%;
+                height: auto;
+                width: 100%;
+                vertical-align: top;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="wrap">
+            <div class="img_box">
+                <img src="../resources/img/1.jpg" alt="">
+            </div>
+            <div class="img_box">
+                <img src="../resources/img/3.jpg" alt="">                
+            </div>
+        </div>
+        <div>tttt</div>
+    </body>
+</html>

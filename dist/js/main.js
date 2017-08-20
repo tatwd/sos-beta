@@ -1,5 +1,5 @@
 /*！
- * Version: sos-min-0.0.1
+ * Version: sos-0.0.1
  * Author: _king
  * E-mail: leoking9641@gmail.com
  * Date: 2017-7-9 ~ 2017-7-15

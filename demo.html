@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="tests/css/main.css" rel="stylesheet">
+        <script src="tests/js/main.js" defer></script>
+    </head>
+    <body>
+        <!--导航部分-->
+        <div id="sos-nav">
+            <ul id="sos-menu">
+                <!--mobile menu-->
+                <li class="menu-mobile sos-col-12"><a href="#"><span class="sos-icon-menu"></span></a></li>
+                <!--sos-menu-->
+                <li class="menu-nomarl sos-col-3"><a href="#">item-1</a></li>
+                <li class="menu-nomarl sos-col-3"><a href="#">item-2</a></li>
+                <li class="menu-nomarl sos-col-3"><a href="#">item-3</a></li>
+                <li class="menu-nomarl sos-col-3"><a href="#">item-4</a></li>
+            </ul>
+        </div>
+        <!--图片轮播-->
+        <div id="sos-caro">
+            <!--sos-caro-->
+            <div class="caro-left sos-col-8">
+                <div class="caro-img sos-col-12"><img class="active" src="../resources/img/1_0.jpg" alt="img-1"></div> 
+                <div class="caro-img sos-col-12"><img src="../resources/img/3_0.jpg" alt="img-3"></div> 
+            </div>
+            
+            <!-- <div class="caro-right sos-col-4">
+                <div class="caro-img caro-img-2 sos-col-12"><img src="../resources/img/3.jpg" alt="img-3"></div>
+                <div class="caro-img caro-img-1 sos-col-12"><img src="../resources/img/1.jpg" alt="img-1"></div>
+            </div> -->
+            
+            <a href="javascript:void(0);" class="caro-ctrl ctrl-left"><i class="icon-ctrl-left"></i></a>
+            <a href="javascript:void(0);" class="caro-ctrl ctrl-right"><i class="icon-ctrl-right"></i></a>
+        </div>
+
+        <!--<a href="#"><span class="sos-icon-menu"></span></a>-->
+        <!--返回顶部-->
+        <!-- <button type="button" class="sos-back-to-top"><a href="#sos-nav"><span class="sos-icon-bktop"></span></a></button> -->
+        <div class="sos-back-to-top"><a href="javascript:void(0);"><span class="sos-icon-bktop"></span></a></div> 
+
+        <footer id="sos-footer" class="">sos-footer</footer> 
+    </body>
+</html>
+
+<script>
+
+// function caroStart() {
+//     // var caro   = document.getElementById('caro');    
+//     var imgs   = document.getElementsByTagName('img');
+//     // var page   = document.getElementsByTagName('span');
+//     var curent = 0;
+
+//     // 淡入 
+//     function fadeIn () {
+//         imgs[curent].className = 'active';
+//         // page[curent].className = 'active';
+//     }
+//     // 淡出
+//     function fadeOut() {
+//         imgs[curent].className = ' ';
+//         // page[curent].className = ' ';
+//     }
+
+//     function go() {
+//         fadeOut();
+//         curent++;
+//         if(curent >= imgs.length) curent = 0;
+//         fadeIn();
+//     }
+
+//     var inter = setInterval(go, 4000);
+
+//     // // 鼠标移入
+//     // caro.onmouseover = function () {
+//     //     clearInterval(inter);
+//     // }
+//     // // 鼠标移出
+//     // caro.onmouseout = function () {
+//     //     inter = setInterval(go, 2000);
+//     // }
+// }
+
+// caroStart();
+
+</script>
