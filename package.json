@@ -1,0 +1,33 @@
+{
+  "name": "sos",
+  "version": "0.0.1-alpha.2",
+  "description": "This is a front-end code library for web development.",
+  "main": "dist/js/sos",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tatwd/sos-beta.git"
+  },
+  "keywords": [
+    "responsive",
+    "sass",
+    "es6",
+    "web"
+  ],
+  "author": "_king",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tatwd/sos-beta/issues"
+  },
+  "homepage": "https://github.com/tatwd/sos-beta#readme",
+  "devDependencies": {
+    "browser-sync": "^2.18.13",
+    "gulp": "^3.9.1",
+    "gulp-sass": "^3.1.0"
+  }
+}

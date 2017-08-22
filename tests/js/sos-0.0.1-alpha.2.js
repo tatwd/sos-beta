@@ -247,10 +247,6 @@ var Base = (function () {
     return Base;
 })();
 
-function tt(e, a) {
-
-}
-
 /**
  * -----------------
  * Icon Modale
@@ -275,11 +271,11 @@ var Caro = (function () {
 
 /**
  * -----------------
- * Doit Modale
+ * Done Modale
  * ----------------- 
  */
 
-var Doit = (function () {
+var Done = (function () {
     // 
 
 })();
