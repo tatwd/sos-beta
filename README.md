@@ -1,6 +1,6 @@
 <p align="center">
   <a href="#">
-    <img src="https://cdn.rawgit.com/tatwd/sos/assets/img/sos-logo.svg" height="72">
+    <img src="https://cdn.rawgit.com/tatwd/sos/master/assets/img/sos-logo.svg" height="72">
   </a>
   
   <h3 align="center">SOS</h3>
