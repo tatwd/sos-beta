@@ -1,6 +1,15 @@
-# SOS
+<p align="center">
+  <a href="#">
+    <img src="assets/img/sos-logo.svg" height="72">
+  </a>
+  
+  <h3 align="center">SOS</h3>
 
-这是一个前端代码库。This is a front-end code library for web development.
+  <p align="center">
+    这是一个前端代码库。<br>
+    This is a front-end code library for web development.
+  </p>
+</p>
 
 ## 目标 Goals
 
