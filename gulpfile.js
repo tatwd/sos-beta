@@ -2,7 +2,6 @@
 
 var gulp        = require('gulp'),
     sass        = require('gulp-sass'),
-    // uglify      = require('gulp-uglify'),
     browserSync = require('browser-sync').create();
 
 var reload = browserSync.reload;
@@ -11,14 +10,7 @@ var reload = browserSync.reload;
 
 var _SASS_ = {
     SRC : 'scss/*.scss',
-    // TEST: 'scss/tests/*.scss',
 };
-
-// var _JS_ = {
-//     SRC : 'js/src/*.js',
-//     TEST: 'js/tests/*.js',
-//     DIST: 'js/dist'
-// };
 
 var _DIST_ = {
     CSS: 'dist/css',
@@ -33,18 +25,21 @@ var _DIST_ = {
  */
 
 // serve task
-gulp.task('serve', function () {
+gulp.task('serve', ['sass'], function () {
     browserSync.init({
         server: {
             baseDir: './',
             index: 'index.html'
         }
     });
+
+    gulp.watch(_SASS_.SRC, ['sass']);
+    gulp.watch("*.html").on('change', reload);
 });
 
 // sass task
 gulp.task('sass', function () {
-    return gulp.src(_SASS_.SRC)
+    return gulp.src('./scss/sos.scss')
         .pipe(sass({
             outputStyle: 'expanded'
         }).on('Error', sass.logError))
@@ -52,20 +47,11 @@ gulp.task('sass', function () {
         .pipe(browserSync.stream());
 });
 
-// uglify task
-// gulp.task('uglify', function () {
-//     gulp.src(_JS_.TEST)
-//         .pipe(uglify())
-//         .pipe(gulp.dest(_JS_.DIST))
-//         .pipe(browserSync.stream());
-// });
-
 // watch task
 gulp.task('watch', function () {
     gulp.watch(_SASS_.SRC, ['sass']);
-    // gulp.watch(_JS_.TEST, ['uglify']);
     gulp.watch("*.html").on('change', reload);
 });
 
 // default task
-gulp.task('default', ['sass', 'serve', 'watch']);
+gulp.task('default', ['serve',]);
