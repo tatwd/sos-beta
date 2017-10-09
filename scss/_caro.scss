@@ -1,0 +1,111 @@
+/**
+ * Imported in main.css!
+ * Last-date: 2017-10-9
+ */
+ 
+#sos-caro {
+    width: 900px;  
+    max-width: 100%;
+    height: auto;
+
+    padding: 15px;   
+    margin: 0 auto; /* centered */
+    background-color: #c06c84; 
+
+    font-size: 0; /* clear the space between imgs */
+
+    position: relative; 
+    display: none; /* don't display caro in small medias */
+}
+
+@media only screen and (min-width:600px) {
+    #sos-caro {
+        display: block;
+    }
+}
+
+#sos-caro::after {
+    content: "";
+    clear: both;
+    display: block;
+}
+
+.caro-left {
+    border: 1px solid red; 
+    position: relative;
+
+    overflow: hidden;
+}
+
+/* importent */
+.caro-left::before {
+    content: '';
+    display: block;
+    width: 100%;
+    padding-top: 56%; /* change */
+}
+
+.caro-right {
+    border: 1px solid lightseagreen;
+    display: none;
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    .caro-right {
+        display: block;
+    }
+}
+
+.caro-img {
+    /* max-width: 100%;  */
+    height: auto; 
+    /* width: 100%; 
+    height: 100%;  */
+
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.caro-img img{
+    max-width: 100%; 
+    height: auto;
+
+    vertical-align: top; 
+
+    opacity: 0;
+    transition: opacity 1s linear;
+}
+
+img.active {
+    opacity: 1;
+}
+
+/* 轮播控制 */
+.caro-ctrl {
+    width: 30px;  
+    height: 30px;  
+    background-color: rgba(0, 0, 0, 0.7); 
+    display: none;   
+    text-decoration: none;
+    padding: 10px;       
+}
+
+.ctrl-left {
+    border-radius: 0 6px 6px 0;
+    position: absolute;
+    top: 45%;
+    left: 0;
+}
+
+.ctrl-right {
+    border-radius: 6px 0 0 6px;
+    position: absolute;
+    top: 45%;
+    right: 0;
+}

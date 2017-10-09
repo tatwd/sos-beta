@@ -29,7 +29,7 @@ gulp.task('serve', ['sass'], function () {
     browserSync.init({
         server: {
             baseDir: './',
-            index: 'index.html'
+            index: 'demo.html'
         }
     });
 
@@ -47,11 +47,18 @@ gulp.task('sass', function () {
         .pipe(browserSync.stream());
 });
 
+// js task
+gulp.task('js:changed', function() {
+    return gulp.src(_DIST_.JS + '/main.js')
+        .pipe(browserSync.stream());
+});
+
 // watch task
 gulp.task('watch', function () {
     gulp.watch(_SASS_.SRC, ['sass']);
-    gulp.watch("*.html").on('change', reload);
+    gulp.watch(_DIST_.JS + '/main.js', ['js:changed']);
+    gulp.watch('*.html').on('change', reload);
 });
 
 // default task
-gulp.task('default', ['serve',]);
+gulp.task('default', ['serve', 'watch']);
