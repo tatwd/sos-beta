@@ -1,7 +1,7 @@
 <p align="center">
-  <a href="#">
+  <!-- <a href="#">
     <img src="https://cdn.rawgit.com/tatwd/sos-beta/master/assets/img/sos-logo.svg" height="72">
-  </a>
+  </a> -->
   
   <h3 align="center">SOS</h3>
 
