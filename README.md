@@ -25,18 +25,18 @@
 
 ## 开始 Start
 
-  1. 项目本地化 Download to local
+  - 项目本地化 Download to local
 
     ``` bash
     $ git clone https://github.com/twbs/bootstrap-sass.git
     ```
-  2. 初始化安装 Initialize and install
+  - 初始化安装 Initialize and install
     
     ``` bash
     $ npm install
     $ npm install gulp-cli --global
     ```
-  3. 启动 Start
+  - 启动 Start
     
     ``` bash
     $ npm start
